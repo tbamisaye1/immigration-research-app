@@ -1,14 +1,24 @@
-import { useState } from 'react'
-import { ImageBackground, StyleSheet, Text, View } from 'react-native'
-import AppButton from '../../components/AppButton'
+import { useState } from 'react';
+import { ImageBackground, Platform, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
+import AppButton from '../../components/AppButton';
 
 export default function landingPage() {
+    const {width} = useWindowDimensions();
     const [isChoosingLang, setIsChoosingLang] = useState(false)
     const [chosenLanguage, setChosenLanguage] = useState("Ελληνικα")
+    const backgroundSrc =
+    Platform.OS === "web"
+      ? require("../../assets/images/landingPage/desktop_16x9_2560x1440.png")
+      //require("../assets/l/desktop_16x9_2560x1440.webp")
+      : width > 768
+      ? require("../../assets/images/landingPage/tablet_3x4_1536x2048.png")
+      : require("../../assets/images/landingPage/mobile_9x16_1080x1920.png");
+    console.log("background source: ", backgroundSrc)
     // create some language choice database which we can then
 
   return (
-    <ImageBackground style={styles.container} resizeMode='cover' source={require('../../assets/images/GreekMapStylized_Blue.png')} >
+    <ImageBackground style={styles.container} source={backgroundSrc} resizeMode='cover'
+     >
         <View style={styles.topBanner}>
             {/* this is where they choose the language of their application */}
             {!isChoosingLang? <AppButton style={styles.languageBtn} onPress={() => setIsChoosingLang(!isChoosingLang)} title={chosenLanguage}/> : <AppButton style={styles.languageBtn} onPress={() => setIsChoosingLang(!isChoosingLang)} title="Choose New Language"/> }
