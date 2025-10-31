@@ -19,6 +19,7 @@ export default function landingPage() {
   return (
     <ImageBackground style={styles.container} source={backgroundSrc} resizeMode='cover'
      >
+        {/* Make background google maps centered around greece */}
         <View style={styles.topBanner}>
             {/* this is where they choose the language of their application */}
             {!isChoosingLang? <AppButton style={styles.languageBtn} onPress={() => setIsChoosingLang(!isChoosingLang)} title={chosenLanguage}/> : <AppButton style={styles.languageBtn} onPress={() => setIsChoosingLang(!isChoosingLang)} title="Choose New Language"/> }
