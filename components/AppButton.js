@@ -1,7 +1,15 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import colors from "../constants/colors";
-function AppButton({ title, onPress, style, colorPaletteName = "primary" }) {
+function AppButton({
+  title,
+  onPress,
+  style,
+  colorPaletteName = "primary",
+  textColor,
+  fontWeight,
+  fontSize,
+}) {
   return (
     <View style={{ width: "100%", paddingHorizontal: 0 }}>
       <TouchableOpacity
@@ -16,10 +24,13 @@ function AppButton({ title, onPress, style, colorPaletteName = "primary" }) {
           style={[
             styles.text,
             {
-              color:
-                colorPaletteName == "primary"
-                  ? colors.primaryText
-                  : colors.secondaryText,
+              color: textColor
+                ? textColor
+                : colorPaletteName == "primary"
+                ? colors.primaryText
+                : colors.secondaryText,
+              fontWeight: fontWeight ? fontWeight : "bold",
+              fontSize: fontSize ? fontSize : 18,
             },
           ]}
         >

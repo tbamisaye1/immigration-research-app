@@ -6,7 +6,7 @@ import MapBackground from './MapBackground';
 export default function LandingPage() {
   const { width } = useWindowDimensions();
   const [isChoosingLang, setIsChoosingLang] = useState(false);
-  const [chosenLanguage, setChosenLanguage] = useState("Ελληνικα");
+  const [chosenLanguage, setChosenLanguage] = useState('Ελληνικα');
 
   const backgroundSrc =
     Platform.OS === "web"
@@ -28,19 +28,22 @@ export default function LandingPage() {
               style={styles.languageBtn}
               onPress={() => setIsChoosingLang((p) => !p)}
               title={chosenLanguage}
+              textColor="white"
             />
           ) : (
             <AppButton
               style={styles.languageBtn}
               onPress={() => setIsChoosingLang((p) => !p)}
               title="Choose New Language"
+            textColor="white"
+
             />
           )}
         </View>
 
         <View style={styles.titleContainer}>
-          <Text style={styles.title}>ΟΔΗΓος</Text>
-          <Text style={styles.title}>ενταξης</Text>
+          <Text style={styles.title}>ΟΔηγος</Text>
+          <Text style={styles.title}>'EΝταξης</Text>
         </View>
 
         <View style={styles.sloganContainer}>
@@ -50,7 +53,7 @@ export default function LandingPage() {
                 alignSelf: "flex-end",
                 margin: 5,
                 fontSize: 20,
-                fontWeight: 600,
+                fontWeight: 500,
                 color: "white",
               }}
             >
@@ -58,12 +61,12 @@ export default function LandingPage() {
             </Text>
           </View>
           <View style={{ flex: 0.4 }}>
-            <AppButton style={styles.sloganBtn} title="Live" />
+            {/* <AppButton style={styles.sloganBtn} title="Live" textColor="white" fontWeight="700" fontSize={15}/> */}
           </View>
         </View>
 
         <View style={styles.btnContainer}>
-          <AppButton style={styles.continueBtn} title="Continue" />
+          <AppButton style={styles.continueBtn} title="Continue"  textColor="#0b3d91"/>
         </View>
       </View>
     </View>
@@ -96,12 +99,19 @@ const styles = StyleSheet.create({
     width: "20%",
     alignSelf: "flex-end",
     borderRadius: 25,
+    backgroundColor: 'rgba(33, 66, cc, 0.5)',
+    borderWidth: 1,
+    borderColor: "white"
+
   },
   sloganBtn: {
     width: "15%",
     borderRadius: 50,
     flex: 0.4,
-    backgroundColor: "cyan",
+    // backgroundColor: "cyan",
+    backgroundColor: 'rgba(0, 0, 0, 0.15)',
+    borderColor: "white",
+    borderWidth: 1
   },
   sloganContainer: {
     flex: 0.05,
