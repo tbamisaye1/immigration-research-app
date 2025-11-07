@@ -1,11 +1,30 @@
-import { Image } from 'expo-image';
 import { Platform, StyleSheet } from 'react-native';
 
+import { createStaticNavigation } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Image } from 'expo-image';
 import { Link } from 'expo-router';
 import { HelloWave } from '../../components/hello-wave';
 import ParallaxScrollView from '../../components/parallax-scroll-view';
 import { ThemedText } from '../../components/themed-text';
 import { ThemedView } from '../../components/themed-view';
+import CreateProfileScreen from './CreateProfileScreen';
+import SelectUserScreen from './SelectUserScreen';
+
+
+const RootStack = createNativeStackNavigator({
+  screens: {
+    CreateProfile: {
+      screen: CreateProfileScreen,
+    },
+    SelectUser: {
+      screen: SelectUserScreen,
+    },
+  },
+});
+
+const Navigation = createStaticNavigation(RootStack);
+
 
 export default function HomeScreen() {
   return (
@@ -75,6 +94,7 @@ export default function HomeScreen() {
         </ThemedText>
       </ThemedView>
     </ParallaxScrollView>
+    // <Navigation/>
   );
 }
 
