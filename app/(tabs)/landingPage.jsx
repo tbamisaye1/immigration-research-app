@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Platform, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import AppButton from '../../components/AppButton';
-import MapBackground from './MapBackground';
+import MapBackground from '../../components/MapBackground';
+
 
 export default function LandingPage() {
   const { width } = useWindowDimensions();
@@ -14,6 +15,7 @@ export default function LandingPage() {
       : width > 768
       ? require("../../assets/images/landingPage/tablet_3x4_1536x2048.png")
       : require("../../assets/images/landingPage/mobile_9x16_1080x1920.png");
+
 
   return (
     <View style={styles.root}>
