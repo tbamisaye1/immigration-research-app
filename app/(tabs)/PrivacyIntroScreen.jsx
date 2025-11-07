@@ -1,5 +1,6 @@
 // PrivacyIntroScreen.js
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
+import { useRouter } from 'expo-router';
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { Image, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
@@ -12,8 +13,11 @@ const border = "#C7D2FE";
 
 export default function PrivacyIntroScreen({ navigation }) {
   const [isConsented, setIsConsented] = useState(false);
-
+  const router = useRouter();
   const handleContinue = () => {
+    if (isConsented) {
+      router.push('/IntegrationGuideScreen');
+    }
     // TODO: navigate to the next screen in your flow
     // navigation.navigate("NextScreen");
   };
@@ -66,7 +70,8 @@ export default function PrivacyIntroScreen({ navigation }) {
 
           {/* Continue button */}
           <TouchableOpacity
-            style={styles.cta}
+            style={[styles.cta, !isConsented && { opacity: 0.5 }]}
+            
             onPress={handleContinue}
             accessibilityRole="button"
             accessibilityLabel="Συνέχεια"

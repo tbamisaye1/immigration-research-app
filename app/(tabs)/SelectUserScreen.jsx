@@ -1,15 +1,21 @@
 // SelectUserScreen.js
 import { useNavigation } from '@react-navigation/native';
 import { Image } from 'expo-image';
+import { useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-
-export default function SelectUserScreen({ onSelectUser = () => {}, }) {
-    const navigation = useNavigation()
+export default function SelectUserScreen({  }) {
+    const navigation = useNavigation() //NOT BEING USED
+    const router = useRouter();
     console.log("navigation: ", navigation)
 
-    const onAddUser  = () => {navigation.navigate('CreateProfile')}
+    const onAddUser  = () => {router.push('/CreateProfileScreen')}
+    const onSelectUser = () => {
+      console.log("onSelectUser called, save user information")
+      router.push('/PrivacyIntroScreen')
+  
+    }
 
     const BASE = "https://api.dicebear.com/9.x/avataaars/png?size=128";
 
@@ -33,7 +39,7 @@ export default function SelectUserScreen({ onSelectUser = () => {}, }) {
       </TouchableOpacity>
 
       {/* Add User Button */}
-      <TouchableOpacity style={styles.addButton} activeOpacity={0.9} onPress={() => {navigation.navigate("CreateProfile")}}>
+      <TouchableOpacity style={styles.addButton} activeOpacity={0.9} onPress={onAddUser}>
         <Text style={styles.addButtonText}>Add User</Text>
       </TouchableOpacity>
 

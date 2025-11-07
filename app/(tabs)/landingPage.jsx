@@ -1,3 +1,4 @@
+import { useRouter } from "expo-router";
 import { useState } from 'react';
 import { Platform, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import AppButton from '../../components/AppButton';
@@ -6,6 +7,7 @@ import MapBackground from '../../components/MapBackground';
 
 export default function LandingPage() {
   const { width } = useWindowDimensions();
+  const router = useRouter();
   const [isChoosingLang, setIsChoosingLang] = useState(false);
   const [chosenLanguage, setChosenLanguage] = useState('Ελληνικα');
 
@@ -68,7 +70,7 @@ export default function LandingPage() {
         </View>
 
         <View style={styles.btnContainer}>
-          <AppButton style={styles.continueBtn} title="Continue"  textColor="#0b3d91"/>
+          <AppButton style={styles.continueBtn} title="Continue"  textColor="#0b3d91" onPress={() => router.push("/SelectUserScreen")} />
         </View>
       </View>
     </View>

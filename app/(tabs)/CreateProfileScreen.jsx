@@ -1,3 +1,4 @@
+import { useRouter } from 'expo-router';
 import { useState } from "react";
 import {
   Image,
@@ -31,6 +32,7 @@ export default function CreateProfileScreen() {
   const [name, setName] = useState("");
   const [selectedSeed, setSelectedSeed] = useState(null);
   const [selectedId, setSelectedId] = useState(null)
+  const router = useRouter();
 
   return (
     <SafeAreaView style={styles.safe}>
@@ -59,7 +61,8 @@ export default function CreateProfileScreen() {
 
  <View style={styles.avatarsWrapper}>
   {SEEDS.map((seed) => (
-    <TouchableOpacity key={seed} style={styles.avatar}>
+    
+    <TouchableOpacity key={seed} style={[styles.avatar, selectedSeed === seed && styles.avatarSelected]} onPress={() => setSelectedSeed(seed)}>
       <Image
         source={{ uri: `${BASE}&seed=${encodeURIComponent(seed)}` }}
         style={styles.avatarImg}
@@ -78,6 +81,9 @@ export default function CreateProfileScreen() {
             disabled={!(name && selectedSeed)}
             onPress={() => {
               // here you'd pass name + selectedSeed to the next screen
+              //Set User information to database
+              //Update Local user data
+              router.push('/PrivacyIntroScreen')
               // e.g. navigation.navigate("Next", { name, avatarSeed: selectedSeed });
             }}
           >
